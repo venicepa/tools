@@ -1,0 +1,73 @@
+<!doctype html>
+<html ng-app="myApp">
+
+<head>
+    <title>National ID Query</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <script src="app.js"></script>
+</head>
+
+<body ng-controller="myCtrl" class="container mt-4">
+<div class="card">
+    <h5 class="card-header">National ID Query</h5>
+    <div class="card-body">
+        <form ng-submit="submitForm()" id="JCICForm">
+            <div class="form-group row">
+                <label for="nationalId" class="col-sm-2 col-form-label">National ID:</label>
+                <div class="col-sm-10">
+                    <input type="text" id="nationalId" class="form-control" ng-model="nationalId" ng-init="nationalId='C121313292'" required/>
+                    <div class="invalid-feedback">Name is required</div>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="typeCode" class="col-sm-2 col-form-label">類別:</label>
+                <div class="col-sm-10">
+                    <select id="typeCode" class="form-control" ng-model="typeCode" [(ngModel)]="typeCodeList" ng-init="typeCode='1'" ng-options="typeCode.id as typeCode.name for typeCode in typeCodeList">
+                        <option value=""></option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="issueDate" class="col-sm-2 col-form-label">發卡日:</label>
+                <div class="col-sm-10">
+                    <input type="date" id="issueDate" class="form-control" ng-model="issueDate" required/>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="regionCode" class="col-sm-2 col-form-label">發卡地區代碼:</label>
+                <div class="col-sm-10">
+                    <select id="regionCode" class="form-control" ng-model="regionCode" ng-options="reginCode.id as reginCode.name for reginCode in reginCodeList" ng-init="regionCode='63000000'">
+                        <option value=""></option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="birthday" class="col-sm-2 col-form-label">Birthday:</label>
+                <div class="col-sm-10">
+                    <input type="date" id="birthday" class="form-control" ng-model="birthday" required/>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="z21" class="col-sm-2 col-form-label">Z21結果:</label>
+                <div class="col-sm-10">
+                    <select id="z21" class="form-control" ng-model="z21" [(ngModel)]="Z21List" ng-init="z21='Y與檔存資料相符'" ng-options="Z21.id as Z21.name for Z21 in Z21List">
+                        <option value=""></option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="z22" class="col-sm-2 col-form-label">Z22結果:</label>
+                <div class="col-sm-10">
+                    <select id="z22" class="form-control" ng-model="z22" [(ngModel)]="z22List" ng-init="z22=true" ng-options="z22.id as z22.name for z22 in Z22List">
+                        <option value=""></option>
+                    </select>
+                </div>
+            </div>
+            <button type="submit" class="btn btn-primary">提交</button>
+        </form>
+    </div>
+</div>
