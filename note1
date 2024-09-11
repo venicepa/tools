@@ -1,0 +1,19 @@
+#!/bin/bash
+
+# 檢查是否提供了文件名參數
+if [ $# -ne 1 ]; then
+    echo "Usage: $0 <filename>"
+    exit 1
+fi
+
+filename=$1
+
+# 使用 sed 命令替換指定位置的內容
+# -i 選項用於直接修改文件
+# --binary 選項確保正確處理二進制文件（對於 Big5 編碼很重要）
+sed -i --binary '
+    # 為每一行執行以下操作
+    s/\(.\{143\}\).\{8\}/\19991231/
+' "$filename"
+
+echo "文件 $filename 已被修改。"
